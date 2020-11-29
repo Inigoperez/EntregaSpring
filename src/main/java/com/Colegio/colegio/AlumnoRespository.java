@@ -18,5 +18,4 @@ public interface AlumnoRespository extends CrudRepository<Alumnos, Integer> {
 	public Alumnos findByNombre(String Nombre);
 
 
-
 }

@@ -68,9 +68,19 @@ public class MainController {
 	
 	///// MODIFICA UN ALUMNO DE LA BD /////
 	@RequestMapping(path="/updateAlumno")
-	public @ResponseBody String updateAlumno (@RequestParam int id_personas,@RequestParam String nombre,@RequestParam String apellido,@RequestParam int id_ciclo) {
+	public @ResponseBody String updateAlumno (@RequestParam int id_personas,String nombre, String apellido, Integer id_ciclo) {
 
 		Alumnos a = AlumnoRespository.findById(id_personas);
+		
+		if(nombre == null) {
+			nombre = a.getNombre();
+		}
+		if(apellido == null) {
+			apellido = a.getApellido();
+		}
+		if(id_ciclo == null) {
+			id_ciclo =a.getId_ciclo();
+		}
 		
 		a.setId_ciclo(id_ciclo);
 		a.setNombre(nombre);
@@ -135,9 +145,16 @@ public class MainController {
 
 	///// MODIFICA UN CICLO DE LA BD MEDIANTE ID /////
 	@RequestMapping(path="/updateCiclo") // Map ONLY POST Requests
-	public @ResponseBody String UpdateCiclo (@RequestParam int id_ciclo,@RequestParam String nombre,@RequestParam String especialidad) {
+	public @ResponseBody String UpdateCiclo (@RequestParam int id_ciclo,String nombre,String especialidad) {
 
 		Ciclos c = CicloRepository.findById(id_ciclo);
+
+		if(nombre == null) {
+			nombre = c.getNombre();
+		}
+		if(especialidad == null) {
+			especialidad = c.getEspecialidad();
+		}
 		
 		c.setName(nombre);
 		c.setEspecialidad(especialidad);
