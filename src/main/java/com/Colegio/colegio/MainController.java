@@ -54,7 +54,7 @@ public class MainController {
 	
 	///// AÑADE UN ALUMNO NUEVO A LA BD /////
 	@RequestMapping(path="/addAlumno")
-	public @ResponseBody String addNewUser (@RequestParam String nombre,@RequestParam String apellido,@RequestParam int id_ciclo) {
+	public @ResponseBody Alumnos addNewUser (@RequestParam String nombre,@RequestParam String apellido,@RequestParam int id_ciclo) {
 
 		Alumnos a = new Alumnos();
 
@@ -63,12 +63,12 @@ public class MainController {
 		a.setId_ciclo(id_ciclo);
 		AlumnoRespository.save(a);
 
-		return "saved";
+		return a;
 	}
 	
 	///// MODIFICA UN ALUMNO DE LA BD /////
 	@RequestMapping(path="/updateAlumno")
-	public @ResponseBody String updateAlumno (@RequestParam int id_personas,String nombre, String apellido, Integer id_ciclo) {
+	public @ResponseBody Alumnos updateAlumno (@RequestParam int id_personas,String nombre, String apellido, Integer id_ciclo) {
 
 		Alumnos a = AlumnoRespository.findById(id_personas);
 		
@@ -87,7 +87,7 @@ public class MainController {
 		a.setApellido(apellido);
 		AlumnoRespository.save(a);
 
-		return "saved";
+		return a;
 	}
 	
 	///// ELIMINA UN ALUMNO MEDIANTE ID DE LA BD /////
@@ -96,7 +96,7 @@ public class MainController {
 		
 		AlumnoRespository.deleteById(id_alumno);
 		
-		return "Deleted" ;	
+		return "redirect:/demo/allAlumnos" ;	
 	}
 ///////////////////////////////////////////////
 //////////// END ALUMNOS REQUEST //////////////
@@ -123,7 +123,7 @@ public class MainController {
 	
 	///// AÑADE UN CICLO NUEVO A LA BD /////
 	@RequestMapping(path="/addCiclos") // Map ONLY POST Requests
-	public @ResponseBody String addNewCiclo (@RequestParam String nombre,@RequestParam String especialidad) {
+	public @ResponseBody Ciclos addNewCiclo (@RequestParam String nombre,@RequestParam String especialidad) {
 
 		Ciclos c = new Ciclos();
 
@@ -131,21 +131,12 @@ public class MainController {
 		c.setEspecialidad(especialidad);
 		CicloRepository.save(c);
 
-		return "saved";
-	}
-
-	///// ELIMINA UN CICLO MEDIANTE ID DE LA BD /////
-	@RequestMapping(path="/deleteCiclo") // Map ONLY POST Requests
-	public String deleteCiclo(@RequestParam int id_ciclo) {
-		
-		CicloRepository.deleteById(id_ciclo);
-		
-		return "Eliminado";
+		return c;
 	}
 
 	///// MODIFICA UN CICLO DE LA BD MEDIANTE ID /////
 	@RequestMapping(path="/updateCiclo") // Map ONLY POST Requests
-	public @ResponseBody String UpdateCiclo (@RequestParam int id_ciclo,String nombre,String especialidad) {
+	public @ResponseBody Ciclos UpdateCiclo (@RequestParam int id_ciclo,String nombre,String especialidad) {
 
 		Ciclos c = CicloRepository.findById(id_ciclo);
 
@@ -160,8 +151,18 @@ public class MainController {
 		c.setEspecialidad(especialidad);
 		CicloRepository.save(c);
 
-		return "saved";
+		return c;
 	}
+	
+	///// ELIMINA UN CICLO MEDIANTE ID DE LA BD /////
+	@RequestMapping(path="/deleteCiclo") // Map ONLY POST Requests
+	public String deleteCiclo(@RequestParam int id_ciclo) {
+		
+		CicloRepository.deleteById(id_ciclo);
+		
+		return "redirect:/demo/allCiclos";
+	}
+
 	
 ///////////////////////////////////////////////
 //////////// END CICLOS REQUEST ///////////////
