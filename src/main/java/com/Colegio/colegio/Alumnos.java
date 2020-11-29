@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.Mapping;
 
 @Entity // This tells Hibernate to make a table out of this class
 
-@NamedQueries({
-	@NamedQuery(name="Alumno.deleteByID", query="SELECT a FROM Alumnos a where a.id_personas = :id")
-})
-
 public class Alumnos {
 
 

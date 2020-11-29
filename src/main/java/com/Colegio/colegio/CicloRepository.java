@@ -7,9 +7,10 @@ import com.Colegio.colegio.Ciclos;
 //This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 //CRUD refers Create, Read, Update, Delete
 
-public interface CicloRepository extends CrudRepository<Ciclos, String> {
+public interface CicloRepository extends CrudRepository<Ciclos, Integer> {
 
-
+	public Ciclos findById(int id);
+	
 	public Ciclos findByEspecialidad(String ciclo);
 
 }
