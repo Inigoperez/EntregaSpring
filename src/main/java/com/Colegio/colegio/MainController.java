@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller 
-@RequestMapping(path="/demo")
+
 
 public class MainController {
 	
@@ -96,7 +96,7 @@ public class MainController {
 		
 		AlumnoRespository.deleteById(id_alumno);
 		
-		return "redirect:/demo/allAlumnos" ;	
+		return "redirect:/allAlumnos" ;	
 	}
 ///////////////////////////////////////////////
 //////////// END ALUMNOS REQUEST //////////////
@@ -160,7 +160,7 @@ public class MainController {
 		
 		CicloRepository.deleteById(id_ciclo);
 		
-		return "redirect:/demo/allCiclos";
+		return "redirect:/allCiclos";
 	}
 
 	
